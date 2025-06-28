@@ -6,7 +6,10 @@ export const Navbar = () => {
   const navigate = useNavigate();
   const { token, removeToken } = useTokenStore();
   return (
-    <AppBar position="static">
+    <AppBar
+      position="static"
+      sx={{ background: "linear-gradient(to right, #2563eb, #4f46e5)" }}
+    >
       <Toolbar>
         <Typography variant="h6" sx={{ flexGrow: 1 }}>
           Envy

@@ -9,7 +9,7 @@ export const PrivateLayout = () => {
   return (
     <>
       <Navbar />
-      <Container sx={{ mt: 2 }}>
+      <Container>
         <Outlet />
       </Container>
     </>

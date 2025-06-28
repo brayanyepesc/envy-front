@@ -6,7 +6,7 @@ export const PublicLayout = () => {
   return (
     <>
       <Navbar />
-      <Container sx={{ mt: 5 }}>
+      <Container>
         <Outlet />
       </Container>
     </>
