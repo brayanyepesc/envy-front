@@ -10,6 +10,7 @@ import {
   Box
 } from '@mui/material';
 import { Package, MapPin, Calendar, DollarSign } from 'lucide-react';
+import { useNavigate } from 'react-router';
 import { StatusBadge } from '../molecules/StatusBadge';
 import type { ShipmentDetailsResponseDto } from '../../../shipments/interfaces/shipment.interface';
 
@@ -18,20 +19,27 @@ interface ShipmentsTableProps {
 }
 
 export const ShipmentsTable = ({ shipments }: ShipmentsTableProps) => {
-  const formatDate = (date: string) => {
-    return new Date(date).toLocaleDateString('es-ES', {
+  const navigate = useNavigate();
+
+  const formatPrice = (price: string | number) => {
+    const numPrice = typeof price === 'string' ? parseFloat(price) : price;
+    return new Intl.NumberFormat('es-CO', {
+      style: 'currency',
+      currency: 'COP',
+      minimumFractionDigits: 0
+    }).format(numPrice);
+  };
+
+  const formatDate = (date: Date) => {
+    return date.toLocaleDateString('es-CO', {
       year: 'numeric',
       month: 'short',
       day: 'numeric'
     });
   };
 
-  const formatPrice = (price: string) => {
-    const numericPrice = parseFloat(price);
-    return new Intl.NumberFormat('es-CO', {
-      style: 'currency',
-      currency: 'COP'
-    }).format(numericPrice);
+  const handleRowClick = (shipment: ShipmentDetailsResponseDto) => {
+    navigate(`/tracking/${shipment.trackingNumber}`);
   };
 
   if (shipments.length === 0) {
@@ -91,11 +99,13 @@ export const ShipmentsTable = ({ shipments }: ShipmentsTableProps) => {
           {shipments.map((shipment) => (
             <TableRow 
               key={shipment.id} 
+              onClick={() => handleRowClick(shipment)}
               sx={{ 
                 '&:hover': { 
                   backgroundColor: '#f8f9fa',
                   cursor: 'pointer'
-                } 
+                },
+                transition: 'background-color 0.2s ease-in-out'
               }}
             >
               <TableCell>
@@ -123,7 +133,7 @@ export const ShipmentsTable = ({ shipments }: ShipmentsTableProps) => {
               </TableCell>
               <TableCell>
                 <Typography variant="body2">
-                  {formatDate(shipment.createdAt)}
+                  {formatDate(new Date(shipment.createdAt))}
                 </Typography>
               </TableCell>
             </TableRow>

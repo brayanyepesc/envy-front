@@ -19,21 +19,9 @@ import {
 } from 'lucide-react';
 import { useNavigate } from 'react-router';
 import { TrackingForm } from '../organisms/TrackingForm';
-import { useState, useCallback } from 'react';
 
 export const Home = () => {
   const navigate = useNavigate();
-  const [trackingNumber, setTrackingNumber] = useState("");
-
-  const handleTrack = useCallback(() => {
-    if (trackingNumber.trim()) {
-      console.log("Rastreando:", trackingNumber);
-    }
-  }, [trackingNumber]);
-
-  const handleGenerateGuide = useCallback(() => {
-    navigate('/quotation');
-  }, [navigate]);
 
   const handleGetStarted = () => {
     navigate('/auth');
@@ -206,24 +194,7 @@ export const Home = () => {
             </Box>
             
             <Box>
-              <Card 
-                sx={{ 
-                  background: 'rgba(255,255,255,0.95)',
-                  backdropFilter: 'blur(10px)',
-                  borderRadius: 3,
-                  p: 4
-                }}
-              >
-                <Typography variant="h5" sx={{ fontWeight: 600, mb: 3, textAlign: 'center' }}>
-                  Rastrea tu Envío
-                </Typography>
-                <TrackingForm
-                  trackingNumber={trackingNumber}
-                  onTrackingNumberChange={setTrackingNumber}
-                  onTrack={handleTrack}
-                  onGenerateGuide={handleGenerateGuide}
-                />
-              </Card>
+              <TrackingForm />
             </Box>
           </Box>
         </Container>
@@ -453,6 +424,24 @@ export const Home = () => {
                 }}
               >
                 Comenzar Gratis
+              </Button>
+              <Button
+                variant="outlined"
+                size="large"
+                onClick={() => navigate('/tariffs')}
+                sx={{
+                  borderColor: 'white',
+                  color: 'white',
+                  px: 4,
+                  py: 1.5,
+                  fontSize: '1.1rem',
+                  '&:hover': {
+                    borderColor: 'white',
+                    background: 'rgba(255,255,255,0.1)'
+                  }
+                }}
+              >
+                Ver Tarifas
               </Button>
               <Button
                 variant="outlined"

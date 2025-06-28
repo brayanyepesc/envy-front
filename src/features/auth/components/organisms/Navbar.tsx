@@ -20,7 +20,9 @@ import {
   Calculator,
   BarChart3,
   Truck,
-  Home
+  Home,
+  MapPin,
+  DollarSign
 } from 'lucide-react';
 import { useState } from "react";
 
@@ -177,6 +179,42 @@ export const Navbar = () => {
             >
               Crear Envío
             </Button>
+            
+            <Button 
+              color="inherit" 
+              onClick={() => navigate("/tracking")}
+              startIcon={<MapPin size={18} />}
+              sx={{ 
+                textTransform: 'none',
+                fontWeight: 500,
+                px: 2,
+                py: 1,
+                borderRadius: 2,
+                '&:hover': {
+                  backgroundColor: 'rgba(255,255,255,0.1)'
+                }
+              }}
+            >
+              Tracking
+            </Button>
+            
+            <Button 
+              color="inherit" 
+              onClick={() => navigate("/tariffs")}
+              startIcon={<DollarSign size={18} />}
+              sx={{ 
+                textTransform: 'none',
+                fontWeight: 500,
+                px: 2,
+                py: 1,
+                borderRadius: 2,
+                '&:hover': {
+                  backgroundColor: 'rgba(255,255,255,0.1)'
+                }
+              }}
+            >
+              Tarifas
+            </Button>
 
             <Divider orientation="vertical" flexItem sx={{ mx: 2, borderColor: 'rgba(255,255,255,0.2)' }} />
             
@@ -256,27 +294,65 @@ export const Navbar = () => {
             </Menu>
           </Box>
         ) : (
-          <Button 
-            color="inherit" 
-            onClick={() => navigate(isAuthPage ? "/" : "/auth")}
-            variant="outlined"
-            startIcon={isAuthPage ? <Home size={18} /> : undefined}
-            sx={{ 
-              textTransform: 'none',
-              fontWeight: 500,
-              borderColor: 'rgba(255,255,255,0.3)',
-              color: 'white',
-              px: 3,
-              py: 1,
-              borderRadius: 2,
-              '&:hover': {
-                backgroundColor: 'rgba(255,255,255,0.1)',
-                borderColor: 'rgba(255,255,255,0.5)'
-              }
-            }}
-          >
-            {isAuthPage ? 'Home' : 'Ingresar'}
-          </Button>
+          <Box display="flex" alignItems="center" gap={2}>
+            <Button 
+              color="inherit" 
+              onClick={() => navigate("/tracking")}
+              startIcon={<MapPin size={18} />}
+              sx={{ 
+                textTransform: 'none',
+                fontWeight: 500,
+                px: 2,
+                py: 1,
+                borderRadius: 2,
+                '&:hover': {
+                  backgroundColor: 'rgba(255,255,255,0.1)'
+                }
+              }}
+            >
+              Tracking
+            </Button>
+            
+            <Button 
+              color="inherit" 
+              onClick={() => navigate("/tariffs")}
+              startIcon={<DollarSign size={18} />}
+              sx={{ 
+                textTransform: 'none',
+                fontWeight: 500,
+                px: 2,
+                py: 1,
+                borderRadius: 2,
+                '&:hover': {
+                  backgroundColor: 'rgba(255,255,255,0.1)'
+                }
+              }}
+            >
+              Tarifas
+            </Button>
+            
+            <Button 
+              color="inherit" 
+              onClick={() => navigate(isAuthPage ? "/" : "/auth")}
+              variant="outlined"
+              startIcon={isAuthPage ? <Home size={18} /> : undefined}
+              sx={{ 
+                textTransform: 'none',
+                fontWeight: 500,
+                borderColor: 'rgba(255,255,255,0.3)',
+                color: 'white',
+                px: 3,
+                py: 1,
+                borderRadius: 2,
+                '&:hover': {
+                  backgroundColor: 'rgba(255,255,255,0.1)',
+                  borderColor: 'rgba(255,255,255,0.5)'
+                }
+              }}
+            >
+              {isAuthPage ? 'Home' : 'Ingresar'}
+            </Button>
+          </Box>
         )}
       </Toolbar>
     </AppBar>

@@ -5,8 +5,11 @@ import { PrivateLayout } from "./features/auth/components/templates/PrivateLayou
 import { Auth } from "./features/auth/components/pages/Auth";
 import { Dashboard } from "./features/dashboard/components/pages/Dashboard";
 import { Quotation } from "./features/quotation/components/pages/Quotation";
+import { Tariffs } from "./features/quotation/components/pages/Tariffs";
 import { CreateShipment } from "./features/shipments/components/pages/CreateShipment";
 import { MyAccount } from "./features/auth/components/pages/MyAccount";
+import { ShipmentTracking } from "./features/shipments/components/pages/ShipmentTracking";
+import { ErrorBoundary } from "./components/ErrorBoundary";
 
 const router = createBrowserRouter([
   {
@@ -14,6 +17,10 @@ const router = createBrowserRouter([
     children: [
       { path: "/", element: <Home /> },
       { path: "/auth", element: <Auth /> },
+      { path: "/tracking", element: <ShipmentTracking /> },
+      { path: "/tracking/:trackingNumber", element: <ShipmentTracking /> },
+      { path: "/shipment/:shipmentId/tracking", element: <ShipmentTracking /> },
+      { path: "/tariffs", element: <Tariffs /> },
     ],
   },
   {
@@ -28,5 +35,9 @@ const router = createBrowserRouter([
 ]);
 
 export default function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <ErrorBoundary>
+      <RouterProvider router={router} />
+    </ErrorBoundary>
+  );
 }

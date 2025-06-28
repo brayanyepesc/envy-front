@@ -1,26 +1,10 @@
-import React, { useState, useCallback } from "react";
+import React from "react";
 import { Box } from "@mui/material";
 import { AnimatedBackground } from "../molecules/AnimatedBackground";
 import { HeroTitle } from "../molecules/HeroTitle";
 import { TrackingForm } from "./TrackingForm";
 
-interface HeroProps {
-  onTrack?: (trackingNumber: string) => void;
-  onGenerateGuide?: () => void;
-}
-
-export const Hero: React.FC<HeroProps> = ({ onTrack, onGenerateGuide }) => {
-  const [trackingNumber, setTrackingNumber] = useState("");
-  const handleTrack = useCallback(() => {
-    if (trackingNumber.trim()) {
-      onTrack?.(trackingNumber.trim());
-      console.log("Rastreando:", trackingNumber);
-    }
-  }, [trackingNumber, onTrack]);
-  const handleGenerateGuide = useCallback(() => {
-    onGenerateGuide?.();
-  }, [onGenerateGuide]);
-
+export const Hero: React.FC = () => {
   return (
     <Box
       component="section"
@@ -47,12 +31,7 @@ export const Hero: React.FC<HeroProps> = ({ onTrack, onGenerateGuide }) => {
           alignItems="center"
         >
           <HeroTitle />
-          <TrackingForm
-            trackingNumber={trackingNumber}
-            onTrackingNumberChange={setTrackingNumber}
-            onTrack={handleTrack}
-            onGenerateGuide={handleGenerateGuide}
-          />
+          <TrackingForm />
         </Box>
       </Box>
     </Box>

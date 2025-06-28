@@ -35,9 +35,9 @@ export const ShipmentDetails = ({ shipment }: ShipmentDetailsProps) => {
 
   const calculateVolume = () => {
     const { length, width, height } = shipment.package;
-    const l = parseFloat(length);
-    const w = parseFloat(width);
-    const h = parseFloat(height);
+    const l = parseFloat(String(length));
+    const w = parseFloat(String(width));
+    const h = parseFloat(String(height));
     return (l * w * h).toFixed(2);
   };
 
@@ -52,7 +52,7 @@ export const ShipmentDetails = ({ shipment }: ShipmentDetailsProps) => {
             <StatusBadge status={shipment.status} />
           </Box>
           <Typography variant="h6" sx={{ color: '#2e7d32', fontWeight: 'bold' }}>
-            {formatPrice(shipment.quotedPrice)}
+            {formatPrice(String(shipment.quotedPrice))}
           </Typography>
         </Box>
 
@@ -112,13 +112,13 @@ export const ShipmentDetails = ({ shipment }: ShipmentDetailsProps) => {
               <Box>
                 <Typography variant="body2" color="textSecondary">Creado</Typography>
                 <Typography variant="body1" sx={{ fontWeight: 600 }}>
-                  {formatDate(shipment.createdAt)}
+                  {formatDate(String(shipment.createdAt))}
                 </Typography>
               </Box>
               <Box>
                 <Typography variant="body2" color="textSecondary">Actualizado</Typography>
                 <Typography variant="body1" sx={{ fontWeight: 600 }}>
-                  {formatDate(shipment.updatedAt)}
+                  {formatDate(String(shipment.updatedAt))}
                 </Typography>
               </Box>
             </Box>
