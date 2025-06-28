@@ -5,6 +5,7 @@ import { PrivateLayout } from "./features/auth/components/templates/PrivateLayou
 import { Auth } from "./features/auth/components/pages/Auth";
 import { Dashboard } from "./features/dashboard/components/pages/Dashboard";
 import { Quotation } from "./features/quotation/components/pages/Quotation";
+import { CreateShipment } from "./features/shipments/components/pages/CreateShipment";
 
 const router = createBrowserRouter([
   {
@@ -19,6 +20,7 @@ const router = createBrowserRouter([
     children: [
       { path: "/dashboard", element: <Dashboard /> },
       { path: "/quotation", element: <Quotation /> },
+      { path: "/shipment/create", element: <CreateShipment /> },
     ],
   },
 ]);

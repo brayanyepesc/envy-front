@@ -1,4 +1,5 @@
 import { Card, CardContent, Typography, Box } from '@mui/material';
+import type { SxProps, Theme } from '@mui/material';
 import type { LucideIcon } from 'lucide-react';
 
 interface StatsCardProps {
@@ -6,9 +7,10 @@ interface StatsCardProps {
   value: string | number;
   icon: LucideIcon;
   subtitle?: string;
+  sx?: SxProps<Theme>;
 }
 
-export const StatsCard = ({ title, value, icon: Icon, subtitle }: StatsCardProps) => {
+export const StatsCard = ({ title, value, icon: Icon, subtitle, sx }: StatsCardProps) => {
   return (
     <Card 
       sx={{ 
@@ -19,7 +21,8 @@ export const StatsCard = ({ title, value, icon: Icon, subtitle }: StatsCardProps
         '&:hover': {
           transform: 'translateY(-4px)',
           boxShadow: '0 8px 25px rgba(0,0,0,0.15)',
-        }
+        },
+        ...sx
       }}
     >
       <CardContent>

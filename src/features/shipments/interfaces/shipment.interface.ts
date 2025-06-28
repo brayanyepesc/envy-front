@@ -22,14 +22,14 @@ export interface ShipmentDetailsResponseDto {
   origin: string;
   destination: string;
   package: {
-    weight: string;
-    length: string;
-    width: string;
-    height: string;
+    weight: number;
+    length: number;
+    width: number;
+    height: number;
   };
-  quotedPrice: string;
-  createdAt: string;
-  updatedAt: string;
+  quotedPrice: number;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 export interface TrackingResponseDto {
@@ -40,7 +40,7 @@ export interface TrackingResponseDto {
     status: string;
     description: string;
     location?: string;
-    timestamp: string;
+    timestamp: Date;
   }>;
 }
 
@@ -51,4 +51,14 @@ export interface ShipmentStatusHistory {
   description: string;
   location?: string;
   createdAt: string;
+}
+
+export interface QuotationData {
+  origin: string;
+  destination: string;
+  weight: number;
+  length: number;
+  width: number;
+  height: number;
+  quotedPrice: number;
 } 

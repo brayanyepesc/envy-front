@@ -6,10 +6,12 @@ import {
   Box,
   CardActions,
   Alert,
+  MenuItem
 } from "@mui/material";
 import { useState, useEffect } from "react";
 import { useAuth } from "../../hooks/useAuth";
 import type { RegisterInput } from "../../interfaces/auth.interface";
+import { AVAILABLE_CITIES } from "../../../quotation/interfaces/quotation.interface";
 
 export const RegisterTab = () => {
   const { register, isLoading, error, clearError } = useAuth();
@@ -113,10 +115,9 @@ export const RegisterTab = () => {
         />
 
         <TextField
+          select
           fullWidth
           label="🏙️ Ciudad"
-          type="text"
-          placeholder="Ciudad"
           margin="normal"
           value={registerData.city}
           onChange={(e) =>
@@ -126,7 +127,14 @@ export const RegisterTab = () => {
             })
           }
           disabled={isLoading}
-        />
+          required
+        >
+          {AVAILABLE_CITIES.map((city) => (
+            <MenuItem key={city} value={city}>
+              {city}
+            </MenuItem>
+          ))}
+        </TextField>
 
         <TextField
           fullWidth

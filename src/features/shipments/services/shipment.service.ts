@@ -7,19 +7,29 @@ import type {
 } from '../interfaces/shipment.interface';
 
 export class ShipmentService {
-  static async getUserShipments(): Promise<ShipmentDetailsResponseDto[]> {
+  static async createShipment(data: CreateShipmentRequestDto): Promise<CreateShipmentResponseDto> {
     try {
-      const response = await api.get('/shipment');
-      return response.data.data || [];
+      const response = await api.post('/shipment', data);
+      return response.data.data;
     } catch (error) {
-      console.error('Error fetching user shipments:', error);
+      console.error('Error creating shipment:', error);
       throw error;
     }
   }
 
-  static async getShipmentById(shipmentId: number): Promise<ShipmentDetailsResponseDto> {
+  static async getShipments(): Promise<ShipmentDetailsResponseDto[]> {
     try {
-      const response = await api.get(`/shipment/${shipmentId}`);
+      const response = await api.get('/shipment');
+      return response.data.data;
+    } catch (error) {
+      console.error('Error fetching shipments:', error);
+      throw error;
+    }
+  }
+
+  static async getShipmentById(id: number): Promise<ShipmentDetailsResponseDto> {
+    try {
+      const response = await api.get(`/shipment/${id}`);
       return response.data.data;
     } catch (error) {
       console.error('Error fetching shipment:', error);
@@ -33,16 +43,6 @@ export class ShipmentService {
       return response.data.data;
     } catch (error) {
       console.error('Error fetching tracking:', error);
-      throw error;
-    }
-  }
-
-  static async createShipment(shipmentData: CreateShipmentRequestDto): Promise<CreateShipmentResponseDto> {
-    try {
-      const response = await api.post('/shipment', shipmentData);
-      return response.data.data;
-    } catch (error) {
-      console.error('Error creating shipment:', error);
       throw error;
     }
   }

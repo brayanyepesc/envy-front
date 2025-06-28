@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { Container, Typography, Box, Alert, Button } from '@mui/material';
 import { QuotationForm } from '../molecules/QuotationForm';
@@ -8,6 +8,7 @@ import type { QuotationRequestDto } from '../../interfaces/quotation.interface';
 
 export const Quotation = () => {
   const navigate = useNavigate();
+  const [formData, setFormData] = useState<QuotationRequestDto | null>(null);
   const { 
     quotation, 
     tariffs, 
@@ -26,6 +27,7 @@ export const Quotation = () => {
 
   const handleSubmit = async (data: QuotationRequestDto) => {
     try {
+      setFormData(data);
       await getQuotation(data);
     } catch (err) {
       console.error('Error al obtener cotización:', err);
@@ -33,13 +35,16 @@ export const Quotation = () => {
   };
 
   const handleAcceptQuotation = () => {
-    if (quotation) {
+    if (quotation && formData) {
       navigate('/shipment/create', { 
         state: { 
           quotationData: {
             origin: quotation.origin,
             destination: quotation.destination,
             weight: quotation.selectedWeight,
+            length: formData.length,
+            width: formData.width,
+            height: formData.height,
             quotedPrice: quotation.price
           }
         } 
@@ -49,6 +54,7 @@ export const Quotation = () => {
 
   const handleNewQuotation = () => {
     clearQuotation();
+    setFormData(null);
   };
 
   if (loading && tariffs.length === 0) {

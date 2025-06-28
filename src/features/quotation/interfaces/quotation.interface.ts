@@ -21,4 +21,14 @@ export interface TariffDto {
   origin: string;
   destination: string;
   pricePerKg: number;
-} 
+}
+
+export const AVAILABLE_CITIES = [
+  'Medellín',
+  'Cartagena',
+  'Barranquilla',
+  'Bogotá',
+  'Cali'
+] as const;
+
+export type AvailableCity = typeof AVAILABLE_CITIES[number]; 
