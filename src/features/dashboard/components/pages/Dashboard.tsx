@@ -1,5 +1,5 @@
+import { DashboardTemplate } from '../templates/DashboardTemplate';
+
 export const Dashboard = () => {
-  return (
-    <div>Dashboard</div>
-  )
-}
+  return <DashboardTemplate />;
+};
