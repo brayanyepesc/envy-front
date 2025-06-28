@@ -1,10 +1,13 @@
 import { useNavigate } from "react-router";
-import { useTokenStore } from "../../store/token.store";
+import { useAuth } from "../../hooks/useAuth";
 import { AppBar, Button, Toolbar, Typography } from "@mui/material";
 
 export const Navbar = () => {
   const navigate = useNavigate();
-  const { token, removeToken } = useTokenStore();
+  const { isAuthenticated, logout, user } = useAuth();
+  const handleLogout = () => {
+    logout();
+  };
   return (
     <AppBar
       position="static"
@@ -14,15 +17,12 @@ export const Navbar = () => {
         <Typography variant="h6" sx={{ flexGrow: 1 }}>
           Envy
         </Typography>
-        {token ? (
+        {isAuthenticated ? (
           <>
-            <Button
-              color="inherit"
-              onClick={() => {
-                removeToken();
-                navigate("/auth");
-              }}
-            >
+            <Typography variant="body2" sx={{ mr: 2 }}>
+              Hola, {user?.names}
+            </Typography>
+            <Button color="inherit" onClick={handleLogout}>
               Cerrar sesión
             </Button>
           </>

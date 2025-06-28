@@ -5,26 +5,33 @@ import {
   Button,
   Box,
   CardActions,
+  Alert,
 } from "@mui/material";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useAuth } from "../../hooks/useAuth";
+import type { RegisterInput } from "../../interfaces/auth.interface";
 
 export const RegisterTab = () => {
-  const [registerData, setRegisterData] = useState({
+  const { register, isLoading, error, clearError } = useAuth();
+  const [registerData, setRegisterData] = useState<RegisterInput>({
     names: "",
     lastnames: "",
+    nickname: "",
     email: "",
     city: "",
     password: "",
     confirmPassword: "",
   });
-  const handleRegister = (e: React.FormEvent) => {
+
+  useEffect(() => {
+    clearError();
+  }, [clearError]);
+
+  const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (registerData.password !== registerData.confirmPassword) {
-      alert("Las contraseñas no coinciden");
-      return;
-    }
-    console.log("Register data:", registerData);
+    await register(registerData);
   };
+
   return (
     <form onSubmit={handleRegister}>
       <CardContent>
@@ -34,6 +41,13 @@ export const RegisterTab = () => {
         <Typography variant="body2" textAlign="center" mb={2}>
           Completa la información para crear tu cuenta
         </Typography>
+
+        {error && (
+          <Alert severity="error" sx={{ mb: 2 }}>
+            {error.message}
+          </Alert>
+        )}
+
         <Box display="flex" gap={2}>
           <TextField
             fullWidth
@@ -46,6 +60,7 @@ export const RegisterTab = () => {
                 names: e.target.value,
               })
             }
+            disabled={isLoading}
             required
           />
           <TextField
@@ -59,9 +74,26 @@ export const RegisterTab = () => {
                 lastnames: e.target.value,
               })
             }
+            disabled={isLoading}
             required
           />
         </Box>
+
+        <TextField
+          fullWidth
+          label="🎯 Nickname"
+          placeholder="juanperez"
+          margin="normal"
+          value={registerData.nickname}
+          onChange={(e) =>
+            setRegisterData({
+              ...registerData,
+              nickname: e.target.value,
+            })
+          }
+          disabled={isLoading}
+          required
+        />
 
         <TextField
           fullWidth
@@ -76,6 +108,7 @@ export const RegisterTab = () => {
               email: e.target.value,
             })
           }
+          disabled={isLoading}
           required
         />
 
@@ -92,6 +125,7 @@ export const RegisterTab = () => {
               city: e.target.value,
             })
           }
+          disabled={isLoading}
         />
 
         <TextField
@@ -107,6 +141,7 @@ export const RegisterTab = () => {
               password: e.target.value,
             })
           }
+          disabled={isLoading}
           required
         />
 
@@ -123,6 +158,7 @@ export const RegisterTab = () => {
               confirmPassword: e.target.value,
             })
           }
+          disabled={isLoading}
           required
         />
       </CardContent>
@@ -131,11 +167,12 @@ export const RegisterTab = () => {
           type="submit"
           variant="contained"
           fullWidth
+          disabled={isLoading}
           sx={{
             background: "linear-gradient(to right, #2563eb, #4f46e5)",
           }}
         >
-          Crear Cuenta
+          {isLoading ? "Creando cuenta..." : "Crear Cuenta"}
         </Button>
       </CardActions>
     </form>
