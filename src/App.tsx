@@ -4,6 +4,7 @@ import { Home } from "./features/home/components/templates/Home";
 import { PrivateLayout } from "./features/auth/components/templates/PrivateLayout";
 import { Auth } from "./features/auth/components/pages/Auth";
 import { Dashboard } from "./features/dashboard/components/pages/Dashboard";
+import { Quotation } from "./features/quotation/components/pages/Quotation";
 
 const router = createBrowserRouter([
   {
@@ -15,7 +16,10 @@ const router = createBrowserRouter([
   },
   {
     element: <PrivateLayout />,
-    children: [{ path: "/dashboard", element: <Dashboard /> }],
+    children: [
+      { path: "/dashboard", element: <Dashboard /> },
+      { path: "/quotation", element: <Quotation /> },
+    ],
   },
 ]);
 

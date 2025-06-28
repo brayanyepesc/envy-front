@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router";
 import { useAuth } from "../../hooks/useAuth";
-import { AppBar, Button, Toolbar, Typography } from "@mui/material";
+import { AppBar, Button, Toolbar, Typography, Box } from "@mui/material";
 
 export const Navbar = () => {
   const navigate = useNavigate();
@@ -19,6 +19,22 @@ export const Navbar = () => {
         </Typography>
         {isAuthenticated ? (
           <>
+            <Box display="flex" alignItems="center" gap={2} sx={{ mr: 2 }}>
+              <Button 
+                color="inherit" 
+                onClick={() => navigate("/dashboard")}
+                sx={{ textTransform: 'none' }}
+              >
+                Dashboard
+              </Button>
+              <Button 
+                color="inherit" 
+                onClick={() => navigate("/quotation")}
+                sx={{ textTransform: 'none' }}
+              >
+                Cotización
+              </Button>
+            </Box>
             <Typography variant="body2" sx={{ mr: 2 }}>
               Hola, {user?.names}
             </Typography>
