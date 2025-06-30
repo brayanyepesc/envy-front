@@ -189,8 +189,8 @@ export const DashboardCharts = ({ shipments }: DashboardChartsProps) => {
             </Box>
           </Box>
           
-          <Box display="flex" alignItems="center" gap={4}>
-            <Box flex={1}>
+          <Box display="flex" flexDirection={{ xs: 'column', md: 'row' }} alignItems={{ xs: 'center', md: 'flex-start' }} gap={4}>
+            <Box flex={1} minHeight={280}>
               <ResponsiveContainer width="100%" height={280}>
                 <PieChart>
                   <Pie
@@ -219,13 +219,13 @@ export const DashboardCharts = ({ shipments }: DashboardChartsProps) => {
               </ResponsiveContainer>
             </Box>
             
-            <Box width={200}>
-              <Typography variant="h6" sx={{ fontWeight: 600, mb: 2, color: '#374151' }}>
+            <Box width={{ xs: '100%', md: 200 }}>
+              <Typography variant="h6" sx={{ fontWeight: 600, mb: 2, color: '#374151', textAlign: { xs: 'center', md: 'left' } }}>
                 Leyenda
               </Typography>
               <Box display="flex" flexDirection="column" gap={1}>
                 {statusData.map((item, index) => (
-                  <Box key={index} display="flex" alignItems="center" gap={1}>
+                  <Box key={index} display="flex" alignItems="center" gap={1} justifyContent={{ xs: 'center', md: 'flex-start' }}>
                     <Box
                       sx={{
                         width: 12,

@@ -79,10 +79,10 @@ export const Tariffs = () => {
     <Container maxWidth="lg" sx={{ py: 4 }}>
       {/* Header */}
       <Box mb={4}>
-        <Typography variant="h3" component="h1" gutterBottom sx={{ fontWeight: 'bold' }}>
+        <Typography variant="h3" component="h1" gutterBottom sx={{ fontWeight: 'bold', fontSize: { xs: '1.75rem', md: '2.125rem' } }}>
           Tarifas de Envío
         </Typography>
-        <Typography variant="h6" color="textSecondary">
+        <Typography variant="h6" color="textSecondary" sx={{ fontSize: { xs: '1rem', md: '1.25rem' } }}>
           Consulta nuestros precios competitivos para envíos nacionales e internacionales
         </Typography>
       </Box>
@@ -189,7 +189,7 @@ export const Tariffs = () => {
                 </InputAdornment>
               )
             }}
-            sx={{ flex: 1, minWidth: 300 }}
+            sx={{ flex: 1, minWidth: { xs: 'auto', sm: 300 } }}
           />
         </Box>
         
@@ -201,93 +201,140 @@ export const Tariffs = () => {
       </Card>
 
       {/* Tariffs Table */}
-      <Card>
-        <CardContent sx={{ p: 0 }}>
-          <TableContainer>
-            <Table>
-              <TableHead>
-                <TableRow sx={{ backgroundColor: '#f8f9fa' }}>
-                  <TableCell sx={{ fontWeight: 600 }}>
-                    <Box display="flex" alignItems="center" gap={1}>
-                      <MapPin size={16} />
-                      Origen
-                    </Box>
-                  </TableCell>
-                  <TableCell sx={{ fontWeight: 600 }}>
-                    <Box display="flex" alignItems="center" gap={1}>
-                      <MapPin size={16} />
-                      Destino
-                    </Box>
-                  </TableCell>
-                  <TableCell sx={{ fontWeight: 600 }}>
-                    <Box display="flex" alignItems="center" gap={1}>
-                      <DollarSign size={16} />
-                      Precio por Kg
-                    </Box>
-                  </TableCell>
-                  <TableCell sx={{ fontWeight: 600 }}>
-                    <Box display="flex" alignItems="center" gap={1}>
-                      <Info size={16} />
-                      Información
-                    </Box>
-                  </TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {filteredTariffs.length > 0 ? (
-                  filteredTariffs.map((tariff) => (
-                    <TableRow 
-                      key={tariff.id}
-                      sx={{ 
-                        '&:hover': { 
-                          backgroundColor: '#f8f9fa',
-                          cursor: 'pointer'
-                        },
-                        transition: 'background-color 0.2s ease-in-out'
-                      }}
-                    >
-                      <TableCell>
-                        <Typography variant="body1" sx={{ fontWeight: 500 }}>
-                          {tariff.origin}
-                        </Typography>
+      <Box>
+        {/* Desktop Table */}
+        <Box sx={{ display: { xs: 'none', md: 'block' } }}>
+          <Card>
+            <CardContent sx={{ p: 0 }}>
+              <TableContainer>
+                <Table>
+                  <TableHead>
+                    <TableRow sx={{ backgroundColor: '#f8f9fa' }}>
+                      <TableCell sx={{ fontWeight: 600 }}>
+                        <Box display="flex" alignItems="center" gap={1}>
+                          <MapPin size={16} />
+                          Origen
+                        </Box>
                       </TableCell>
-                      <TableCell>
-                        <Typography variant="body1" sx={{ fontWeight: 500 }}>
-                          {tariff.destination}
-                        </Typography>
+                      <TableCell sx={{ fontWeight: 600 }}>
+                        <Box display="flex" alignItems="center" gap={1}>
+                          <MapPin size={16} />
+                          Destino
+                        </Box>
                       </TableCell>
-                      <TableCell>
-                        <Typography variant="body1" sx={{ fontWeight: 600, color: '#2e7d32' }}>
-                          {formatPrice(tariff.pricePerKg)}
-                        </Typography>
+                      <TableCell sx={{ fontWeight: 600 }}>
+                        <Box display="flex" alignItems="center" gap={1}>
+                          <DollarSign size={16} />
+                          Precio por Kg
+                        </Box>
                       </TableCell>
-                      <TableCell>
-                        <Chip
-                          label="Tarifa por Kg"
-                          color="primary"
-                          variant="outlined"
-                          size="small"
-                        />
+                      <TableCell sx={{ fontWeight: 600 }}>
+                        <Box display="flex" alignItems="center" gap={1}>
+                          <Info size={16} />
+                          Información
+                        </Box>
                       </TableCell>
                     </TableRow>
-                  ))
-                ) : (
-                  <TableRow>
-                    <TableCell colSpan={4} sx={{ textAlign: 'center', py: 4 }}>
-                      <Typography variant="h6" color="textSecondary" gutterBottom>
-                        No se encontraron tarifas
+                  </TableHead>
+                  <TableBody>
+                    {filteredTariffs.length > 0 ? (
+                      filteredTariffs.map((tariff) => (
+                        <TableRow 
+                          key={tariff.id}
+                          sx={{ 
+                            '&:hover': { 
+                              backgroundColor: '#f8f9fa',
+                              cursor: 'pointer'
+                            },
+                            transition: 'background-color 0.2s ease-in-out'
+                          }}
+                        >
+                          <TableCell>
+                            <Typography variant="body1" sx={{ fontWeight: 500 }}>
+                              {tariff.origin}
+                            </Typography>
+                          </TableCell>
+                          <TableCell>
+                            <Typography variant="body1" sx={{ fontWeight: 500 }}>
+                              {tariff.destination}
+                            </Typography>
+                          </TableCell>
+                          <TableCell>
+                            <Typography variant="body1" sx={{ fontWeight: 600, color: '#2e7d32' }}>
+                              {formatPrice(tariff.pricePerKg)}
+                            </Typography>
+                          </TableCell>
+                          <TableCell>
+                            <Chip
+                              label="Tarifa por Kg"
+                              color="primary"
+                              variant="outlined"
+                              size="small"
+                            />
+                          </TableCell>
+                        </TableRow>
+                      ))
+                    ) : (
+                      <TableRow>
+                        <TableCell colSpan={4} sx={{ textAlign: 'center', py: 4 }}>
+                          <Typography variant="h6" color="textSecondary" gutterBottom>
+                            No se encontraron tarifas
+                          </Typography>
+                          <Typography variant="body2" color="textSecondary">
+                            Intenta con otros términos de búsqueda
+                          </Typography>
+                        </TableCell>
+                      </TableRow>
+                    )}
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            </CardContent>
+          </Card>
+        </Box>
+
+        {/* Mobile Cards */}
+        <Box sx={{ display: { xs: 'block', md: 'none' } }}>
+          {filteredTariffs.length > 0 ? (
+            filteredTariffs.map((tariff) => (
+              <Card key={tariff.id} sx={{ mb: 2 }}>
+                <CardContent sx={{ p: 2 }}>
+                  <Box display="flex" justifyContent="space-between" alignItems="flex-start" mb={1}>
+                    <Box display="flex" alignItems="center" gap={1}>
+                      <MapPin size={16} color="#6b7280" />
+                      <Typography variant="body2" color="textSecondary" sx={{ fontSize: '0.75rem' }}>
+                        {tariff.origin} → {tariff.destination}
                       </Typography>
-                      <Typography variant="body2" color="textSecondary">
-                        Intenta con otros términos de búsqueda
-                      </Typography>
-                    </TableCell>
-                  </TableRow>
-                )}
-              </TableBody>
-            </Table>
-          </TableContainer>
-        </CardContent>
-      </Card>
+                    </Box>
+                    <Chip
+                      label="Tarifa por Kg"
+                      color="primary"
+                      variant="outlined"
+                      size="small"
+                    />
+                  </Box>
+                  
+                  <Box display="flex" alignItems="center" gap={1}>
+                    <DollarSign size={16} color="#2e7d32" />
+                    <Typography variant="body1" sx={{ fontWeight: 600, color: '#2e7d32' }}>
+                      {formatPrice(tariff.pricePerKg)}
+                    </Typography>
+                  </Box>
+                </CardContent>
+              </Card>
+            ))
+          ) : (
+            <Card sx={{ p: 4, textAlign: 'center' }}>
+              <Typography variant="h6" color="textSecondary" gutterBottom>
+                No se encontraron tarifas
+              </Typography>
+              <Typography variant="body2" color="textSecondary">
+                Intenta con otros términos de búsqueda
+              </Typography>
+            </Card>
+          )}
+        </Box>
+      </Box>
 
       {/* Info Section */}
       <Card sx={{ mt: 4, background: 'linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%)' }}>

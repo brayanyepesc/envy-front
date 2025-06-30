@@ -80,12 +80,12 @@ export const DashboardTemplate = () => {
         </Alert>
       )}
 
-      <Box mb={4} display="flex" justifyContent="space-between" alignItems="center">
+      <Box mb={4} display="flex" flexDirection={{ xs: 'column', md: 'row' }} justifyContent="space-between" alignItems={{ xs: 'flex-start', md: 'center' }} gap={2}>
         <Box>
-          <Typography variant="h3" component="h1" gutterBottom sx={{ fontWeight: 'bold' }}>
+          <Typography variant="h3" component="h1" gutterBottom sx={{ fontWeight: 'bold', fontSize: { xs: '1.75rem', md: '2.125rem' } }}>
             Dashboard de Envíos
           </Typography>
-          <Typography variant="h6" color="textSecondary">
+          <Typography variant="h6" color="textSecondary" sx={{ fontSize: { xs: '1rem', md: '1.25rem' } }}>
             Resumen completo de tus envíos y estadísticas
           </Typography>
         </Box>
@@ -132,7 +132,7 @@ export const DashboardTemplate = () => {
           />
         </Box>
         
-        <Box display="grid" gridTemplateColumns="repeat(4, 1fr)" gap={3}>
+        <Box display="grid" gridTemplateColumns={{ xs: 'repeat(2, 1fr)', md: 'repeat(4, 1fr)' }} gap={{ xs: 2, md: 3 }}>
           <StatsCard
             title="Total de Envíos"
             value={shipmentsArray.length}

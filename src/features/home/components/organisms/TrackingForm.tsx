@@ -76,7 +76,7 @@ export const TrackingForm = () => {
         </Box>
 
         <form onSubmit={handleSubmit}>
-          <Box display="flex" gap={2} flexWrap="wrap" alignItems="center">
+          <Box display="flex" flexDirection={{ xs: 'column', sm: 'row' }} gap={2} alignItems={{ xs: 'stretch', sm: 'center' }}>
             <TextField
               fullWidth
               label="Número de Seguimiento"
@@ -94,7 +94,7 @@ export const TrackingForm = () => {
                   <MapPin size={20} color="#6b7280" style={{ marginRight: 8 }} />
                 )
               }}
-              sx={{ flex: 1, minWidth: 300 }}
+              sx={{ flex: 1, minWidth: { xs: 'auto', sm: 300 } }}
             />
             <Button
               type="submit"
@@ -105,12 +105,13 @@ export const TrackingForm = () => {
               sx={{
                 background: 'linear-gradient(to right, #2563eb, #4f46e5)',
                 color: 'white',
-                px: 4,
+                px: { xs: 2, sm: 4 },
                 py: 1.5,
                 textTransform: 'none',
                 fontSize: '1rem',
                 fontWeight: 600,
                 borderRadius: 2,
+                minWidth: { xs: 'auto', sm: 'fit-content' },
                 '&:hover': {
                   background: 'linear-gradient(to right, #1d4ed8, #4338ca)',
                   transform: 'translateY(-1px)',

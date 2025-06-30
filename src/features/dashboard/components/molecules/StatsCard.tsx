@@ -27,23 +27,25 @@ export const StatsCard = ({ title, value, icon: Icon, subtitle, sx }: StatsCardP
     >
       <CardContent>
         <Box display="flex" alignItems="center" justifyContent="space-between" mb={2}>
-          <Typography variant="h6" component="div" sx={{ fontWeight: 600 }}>
+          <Typography variant="h6" component="div" sx={{ fontWeight: 600, fontSize: { xs: '0.875rem', md: '1.25rem' } }}>
             {title}
           </Typography>
           <Box 
             sx={{ 
               backgroundColor: 'rgba(255,255,255,0.2)', 
               borderRadius: '50%', 
-              p: 1,
+              p: { xs: 0.75, md: 1 },
               display: 'flex',
               alignItems: 'center',
-              justifyContent: 'center'
+              justifyContent: 'center',
+              width: { xs: 32, md: 40 },
+              height: { xs: 32, md: 40 }
             }}
           >
-            <Icon size={24} color="white" />
+            <Icon size={20} color="white" />
           </Box>
         </Box>
-        <Typography variant="h4" component="div" sx={{ fontWeight: 'bold', mb: 1 }}>
+        <Typography variant="h4" component="div" sx={{ fontWeight: 'bold', mb: 1, fontSize: { xs: '1.5rem', md: '2.125rem' } }}>
           {value}
         </Typography>
         {subtitle && (

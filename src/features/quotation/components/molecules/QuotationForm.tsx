@@ -116,8 +116,8 @@ export const QuotationForm = ({
         )}
 
         <form onSubmit={handleSubmit}>
-          <Box display="flex" gap={3} flexWrap="wrap">
-            <Box flex={1} minWidth={300}>
+          <Box display="flex" flexDirection={{ xs: 'column', lg: 'row' }} gap={3}>
+            <Box flex={1} minWidth={{ xs: 'auto', lg: 300 }}>
               <Box display="flex" alignItems="center" gap={1} mb={2}>
                 <MapPin size={20} />
                 <Typography variant="h6">Origen y Destino</Typography>
@@ -169,7 +169,7 @@ export const QuotationForm = ({
               )}
             </Box>
 
-            <Box flex={1} minWidth={300}>
+            <Box flex={1} minWidth={{ xs: 'auto', lg: 300 }}>
               <Box display="flex" alignItems="center" gap={1} mb={2}>
                 <Package size={20} />
                 <Typography variant="h6">Dimensiones del Paquete</Typography>
@@ -186,7 +186,7 @@ export const QuotationForm = ({
                 inputProps={{ min: 0, step: 0.1 }}
               />
 
-              <Box display="flex" gap={2} sx={{ mt: 1 }}>
+              <Box display="flex" flexDirection={{ xs: 'column', sm: 'row' }} gap={2} sx={{ mt: 1 }}>
                 <TextField
                   fullWidth
                   label="Largo (cm)"

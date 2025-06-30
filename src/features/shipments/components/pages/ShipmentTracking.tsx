@@ -145,17 +145,17 @@ export const ShipmentTracking = () => {
     <Container maxWidth="lg" sx={{ py: 4 }}>
       {/* Header */}
       <Box mb={4}>
-        <Typography variant="h3" component="h1" gutterBottom sx={{ fontWeight: 'bold' }}>
+        <Typography variant="h3" component="h1" gutterBottom sx={{ fontWeight: 'bold', fontSize: { xs: '1.75rem', md: '2.125rem' } }}>
           Seguimiento de Envío
         </Typography>
-        <Typography variant="h6" color="textSecondary">
+        <Typography variant="h6" color="textSecondary" sx={{ fontSize: { xs: '1rem', md: '1.25rem' } }}>
           Rastrea tu envío en tiempo real y conoce su ubicación actual
         </Typography>
       </Box>
 
       {/* Search Section */}
       <Card sx={{ mb: 4, p: 3 }}>
-        <Box display="flex" gap={2} alignItems="center" flexWrap="wrap">
+        <Box display="flex" flexDirection={{ xs: 'column', sm: 'row' }} gap={2} alignItems={{ xs: 'stretch', sm: 'center' }}>
           <TextField
             fullWidth
             label="Número de Seguimiento"
@@ -163,35 +163,37 @@ export const ShipmentTracking = () => {
             onChange={(e) => setSearchTrackingNumber(e.target.value)}
             onKeyPress={handleKeyPress}
             placeholder="Ejemplo: 56000000000"
-            sx={{ flex: 1, minWidth: 300 }}
+            sx={{ flex: 1, minWidth: { xs: 'auto', sm: 300 } }}
           />
-          <Button
-            variant="contained"
-            startIcon={<Search size={20} />}
-            onClick={handleSearch}
-            disabled={!searchTrackingNumber.trim() || loading}
-            sx={{
-              background: 'linear-gradient(to right, #2563eb, #4f46e5)',
-              color: 'white',
-              px: 3,
-              '&:hover': {
-                background: 'linear-gradient(to right, #1d4ed8, #4338ca)'
-              }
-            }}
-          >
-            Buscar
-          </Button>
-          <Button
-            variant="outlined"
-            startIcon={<RefreshCw size={20} />}
-            onClick={refresh}
-            disabled={loading}
-          >
-            Actualizar
-          </Button>
+          <Box display="flex" gap={1}>
+            <Button
+              variant="contained"
+              startIcon={<Search size={20} />}
+              onClick={handleSearch}
+              disabled={!searchTrackingNumber.trim() || loading}
+              sx={{
+                background: 'linear-gradient(to right, #2563eb, #4f46e5)',
+                color: 'white',
+                px: { xs: 2, sm: 3 },
+                '&:hover': {
+                  background: 'linear-gradient(to right, #1d4ed8, #4338ca)'
+                }
+              }}
+            >
+              Buscar
+            </Button>
+            <Button
+              variant="outlined"
+              startIcon={<RefreshCw size={20} />}
+              onClick={refresh}
+              disabled={loading}
+            >
+              Actualizar
+            </Button>
+          </Box>
         </Box>
 
-        <Box mt={2} display="flex" alignItems="center" gap={2}>
+        <Box mt={2} display="flex" flexDirection={{ xs: 'column', sm: 'row' }} alignItems={{ xs: 'flex-start', sm: 'center' }} gap={2}>
           <FormControlLabel
             control={
               <Switch
@@ -236,11 +238,11 @@ export const ShipmentTracking = () => {
           {/* Current Status Card */}
           <Card sx={{ mb: 4, background: 'linear-gradient(135deg, #ffffff 0%, #f8fafc 100%)' }}>
             <CardContent sx={{ p: 4 }}>
-              <Box display="flex" alignItems="center" justifyContent="space-between" mb={3}>
+              <Box display="flex" flexDirection={{ xs: 'column', md: 'row' }} alignItems={{ xs: 'flex-start', md: 'center' }} justifyContent="space-between" mb={3} gap={2}>
                 <Box display="flex" alignItems="center" gap={2}>
                   {getStatusIcon()}
                   <Box>
-                    <Typography variant="h4" sx={{ fontWeight: 'bold', color: getStatusColor() }}>
+                    <Typography variant="h4" sx={{ fontWeight: 'bold', color: getStatusColor(), fontSize: { xs: '1.5rem', md: '2.125rem' } }}>
                       {getStatusLabel(getCurrentStatus())}
                     </Typography>
                     <Typography variant="body1" color="textSecondary">
@@ -248,7 +250,7 @@ export const ShipmentTracking = () => {
                     </Typography>
                   </Box>
                 </Box>
-                <Box textAlign="right">
+                <Box textAlign={{ xs: 'left', md: 'right' }}>
                   <Typography variant="h6" sx={{ fontWeight: 600 }}>
                     #{trackingData.trackingNumber}
                   </Typography>
