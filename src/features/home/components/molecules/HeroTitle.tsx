@@ -1,7 +1,7 @@
 import { Box, Typography } from "@mui/material";
 
 export const HeroTitle = () => (
-  <Box color="white" textAlign={{ xs: "center", md: "left" }}>
+  <Box color="text.primary" textAlign={{ xs: "center", md: "left" }}>
     <Typography
       variant="h2"
       fontWeight="bold"

@@ -13,7 +13,7 @@ export const PrivateLayout = () => {
   return (
     <>
       <Navbar />
-      <Container>
+      <Container sx={{ mt: 10 }}>
         <Outlet />
       </Container>
     </>

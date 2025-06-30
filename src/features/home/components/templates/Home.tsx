@@ -107,30 +107,16 @@ export const Home = () => {
       {/* Hero Section */}
       <Box
         sx={{
-          background: 'linear-gradient(to right, #2563eb, #4f46e5)',
+          background: '#ffffff',
           minHeight: '100vh',
           display: 'flex',
           alignItems: 'center',
-          position: 'relative',
-          overflow: 'hidden'
+          position: 'relative'
         }}
       >
-        {/* Background Pattern */}
-        <Box
-          sx={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            background: 'url("data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.05"%3E%3Ccircle cx="30" cy="30" r="2"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")',
-            opacity: 0.3
-          }}
-        />
-        
         <Container maxWidth="xl">
           <Box display="grid" gridTemplateColumns={{ xs: '1fr', md: '1fr 1fr' }} gap={6} alignItems="center">
-            <Box sx={{ color: 'white' }}>
+            <Box sx={{ color: 'text.primary' }}>
               <Typography 
                 variant="h1" 
                 sx={{ 
@@ -160,14 +146,14 @@ export const Home = () => {
                   size="large"
                   onClick={handleGetStarted}
                   sx={{
-                    background: 'white',
-                    color: '#2563eb',
+                    background: 'linear-gradient(135deg, #2563eb, #4f46e5)',
+                    color: 'white',
                     px: 4,
                     py: 1.5,
                     fontSize: '1.1rem',
                     fontWeight: 600,
                     '&:hover': {
-                      background: 'rgba(255,255,255,0.9)'
+                      background: 'linear-gradient(135deg, #1d4ed8, #4338ca)'
                     }
                   }}
                 >
@@ -177,14 +163,14 @@ export const Home = () => {
                   variant="outlined"
                   size="large"
                   sx={{
-                    borderColor: 'white',
-                    color: 'white',
+                    borderColor: '#2563eb',
+                    color: '#2563eb',
                     px: 4,
                     py: 1.5,
                     fontSize: '1.1rem',
                     '&:hover': {
-                      borderColor: 'white',
-                      background: 'rgba(255,255,255,0.1)'
+                      borderColor: '#1d4ed8',
+                      background: 'rgba(37, 99, 235, 0.05)'
                     }
                   }}
                 >

@@ -21,7 +21,7 @@ export const useTracking = (options: UseTrackingOptions = {}) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [lastUpdate, setLastUpdate] = useState<Date | null>(null);
-  const intervalRef = useRef<number | null>(null);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const fetchTracking = useCallback(async () => {
     if (!trackingNumber && !shipmentId) {
